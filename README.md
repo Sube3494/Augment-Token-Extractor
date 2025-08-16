@@ -1,12 +1,37 @@
-## Augment Token 提取器
+<div align="center">
 
-一个极简、可离线运行的 Augment API Token 提取工具。支持一键生成授权 URL、粘贴授权 JSON 后获取访问令牌，并可复制令牌与租户 URL。内置 ACE 微交互（按压/涟漪）与浅/暗主题切换。
+<h1>🔐 Augment Token 提取器</h1>
 
-### 预览截图
+<img src="./public/key.png" alt="App Icon" width="120" />
+
+<p>一个极简、可离线运行的 Augment API Token 提取工具。支持一键生成授权 URL、粘贴授权 JSON 后获取访问令牌，并可复制令牌与租户 URL。内置 ACE 微交互与浅/暗主题切换。🚀✨</p>
+
+<p>
+<a href="https://github.com/Sube3494/Augment-Token-Extractor/actions/workflows/ci.yml"><img alt="CI" src="https://img.shields.io/github/actions/workflow/status/Sube3494/Augment-Token-Extractor/ci.yml?branch=main&label=CI&logo=github" /></a>
+<a href="https://github.com/Sube3494/Augment-Token-Extractor/actions/workflows/deploy.yml"><img alt="Deploy" src="https://img.shields.io/github/actions/workflow/status/Sube3494/Augment-Token-Extractor/deploy.yml?branch=main&label=Deploy&logo=github" /></a>
+<a href="LICENSE"><img alt="License" src="https://img.shields.io/github/license/Sube3494/Augment-Token-Extractor?label=license" /></a>
+<a href="https://conventionalcommits.org"><img alt="Conventional Commits" src="https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg" /></a>
+<img alt="PRs Welcome" src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" />
+</p>
+
+<p>
+<img alt="Node" src="https://img.shields.io/badge/node-%3E%3D18-339933?logo=node.js" />
+<img alt="pnpm" src="https://img.shields.io/badge/pnpm-10%2B-f69220?logo=pnpm" />
+<img alt="Next.js" src="https://img.shields.io/badge/Next.js-15.2.4-black?logo=nextdotjs" />
+<img alt="React" src="https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=white" />
+<img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-5.x-3178C6?logo=typescript&logoColor=white" />
+<img alt="Tailwind CSS" src="https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?logo=tailwindcss&logoColor=white" />
+<img alt="Cloudflare Workers" src="https://img.shields.io/badge/Cloudflare-Workers-F38020?logo=cloudflare" />
+<img alt="ESLint" src="https://img.shields.io/badge/ESLint-enabled-4B32C3?logo=eslint" />
+</p>
+
+</div>
+
+### 预览截图 📸
 ![主页浅色](docs/images/home-light.png)
 ![主页深色](docs/images/home-dark.png)
 
-## 功能特性
+## 功能特性 ✨
 - 授权 URL 生成（PKCE）
 - 粘贴授权返回 JSON，交换访问令牌
 - 一键复制：授权 URL、访问令牌、租户 URL
@@ -14,7 +39,7 @@
 - 主题切换（浅色/暗色，跟随系统，持久化）
 - 无第三方 UI 依赖，KISS/YAGNI
 
-## 快速开始
+## 快速开始 🚀
 ### 环境要求
 - Node.js 18+（推荐 20）
 - pnpm
@@ -95,7 +120,7 @@ curl -X POST http://localhost:3000/api/token-proxy \
 - src/app/api/token-proxy/route.ts Next API 路由
 - docs/images         文档图片（将你的截图放到这里）
 
-## 系统架构
+## 系统架构 🧩
 下图展示了前端、边缘代理（Next.js API 或 Cloudflare Worker）与租户 Token 接口的通信关系：
 
 ```mermaid
@@ -123,7 +148,7 @@ flowchart LR
   CFWorker --> Token
 ```
 
-## 常用脚本
+## 常用脚本 🛠️
 ```bash
 pnpm dev     # 本地开发
 pnpm build   # 生产构建
@@ -131,24 +156,37 @@ pnpm start   # 启动生产构建产物
 pnpm lint    # 运行 ESLint（可选）
 ```
 
-## 部署
+## 部署 🚢
 
-### 一键部署网站（Vercel）
+### 一键部署网站（Vercel） ▶️
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FSube3494%2FAugment-Token-Extractor&project-name=augment-token-extractor&repository-name=Augment-Token-Extractor&install-command=pnpm%20install%20--frozen-lockfile&build-command=pnpm%20build&env=ALLOWED_ORIGINS,TENANT_URL_WHITELIST&output-directory=.next)
 
-- 部署完成后，在 Project → Settings → Environment Variables 设置：
-  - ALLOWED_ORIGINS：你的前端域名（生产环境不要用 *）
-  - TENANT_URL_WHITELIST：允许的租户前缀（逗号分隔，以 / 结尾）
+1) 打开上方按钮，一键导入项目
+2) 安装命令选择 pnpm，构建命令为 pnpm build，输出目录 .next（默认已填）
+3) 部署完成后，在 Project → Settings → Environment Variables 手动添加：
+   - ALLOWED_ORIGINS：你的前端域名（生产环境不要用 *）
+   - TENANT_URL_WHITELIST：允许的租户前缀（逗号分隔，以 / 结尾）
+4) 本地变量写在 .env.local，Vercel 会在构建时自动注入项目环境变量
+5) 如果使用 GitHub Actions 的 deploy.yml 做“预构建后部署”，需要在仓库 Secrets 中配置：
+   - VERCEL_TOKEN：Vercel API Token（Vercel → Account → Tokens）
+   - VERCEL_ORG_ID：项目所属 Org ID
+   - VERCEL_PROJECT_ID：项目 ID
 
-### 一键部署中转站（Cloudflare Worker，可选）
+### 一键部署中转站（Cloudflare Worker，可选） ☁️
 
 [![Deploy to Cloudflare Workers](https://img.shields.io/badge/Deploy_to-Cloudflare_Workers-orange?logo=cloudflare)](https://deploy.workers.cloudflare.com/?url=https%3A%2F%2Fgithub.com%2FSube3494%2FAugment-Token-Extractor)
 
-- 进入控制台后，按照提示创建 Worker；在 Variables 中设置：
-  - ALLOWED_ORIGINS：允许的前端域名（多个用逗号）
-  - TENANT_URL_WHITELIST：允许的租户前缀（逗号分隔，以 / 结尾）
-- 入口文件：workers/token-proxy.ts（已提供 wrangler.toml）
+1) 打开上方按钮，进入 Cloudflare 控制台完成导入
+2) 在 Variables 中设置：
+   - ALLOWED_ORIGINS：允许的前端域名（多个用逗号）
+   - TENANT_URL_WHITELIST：允许的租户前缀（逗号分隔，以 / 结尾）
+3) 若本地/CI 用 wrangler 部署：
+   - 安装：pnpm dlx wrangler --version（已内置）
+   - 配置 wrangler.toml（仓库已提供）
+   - 部署：pnpm dlx wrangler deploy --config wrangler.toml
+   - 在 CI（GitHub Actions）中需要 Secrets：CLOUDFLARE_API_TOKEN、CLOUDFLARE_ACCOUNT_ID
+4) 入口文件：workers/token-proxy.ts（已提供 wrangler.toml）
 
 > 本项目提供两种“令牌交换中转站”：Vercel 的 Next.js API（默认随网站部署），或 Cloudflare Worker（独立部署）。选择其一即可。
 
@@ -160,13 +198,15 @@ pnpm lint    # 运行 ESLint（可选）
 
 准备工作（GitHub 仓库 → Settings → Secrets and variables → Actions）：
 - Vercel（网站部署）
-  - VERCEL_TOKEN：你的 Vercel API Token
-  - VERCEL_ORG_ID：Vercel 组织 ID
-  - VERCEL_PROJECT_ID：Vercel 项目 ID
+  - VERCEL_TOKEN：你的 Vercel API Token（Account → Tokens）
+  - VERCEL_ORG_ID：Vercel 组织 ID（项目 Overview → Settings → General）
+  - VERCEL_PROJECT_ID：Vercel 项目 ID（同上位置）
+  - 提醒：deploy.yml 会在缺失这些 Secrets 时自动跳过 Vercel 部署
   - 在 Vercel 项目环境变量中配置 ALLOWED_ORIGINS、TENANT_URL_WHITELIST（或在 Pull 阶段从 Vercel 同步）
 - Cloudflare（Worker 部署，可选）
   - CLOUDFLARE_API_TOKEN：wrangler 部署所需 Token（需有 Workers 权限）
   - CLOUDFLARE_ACCOUNT_ID：你的 Cloudflare 账号 ID
+  - 提醒：deploy.yml 会在缺失这些 Secrets 时自动跳过 Cloudflare 部署
 
 触发方式：
 - 直接推送到 main 分支
@@ -174,21 +214,18 @@ pnpm lint    # 运行 ESLint（可选）
 
 
 
-## 技术与约定
+## 技术与约定 📚
 - Next.js 15（App Router）
 - Tailwind CSS v4（@tailwindcss/postcss）
 - 路径别名：@/* → src/*（见 tsconfig.json）
 - 主题：next-themes（系统/浅色/暗色）
 - ACE：.ace-press / .ace-ripple 微交互工具类
 
-## 安全与隐私
+## 安全与隐私 🔒
 - 访问令牌属于敏感数据，请勿提交到仓库或暴露在截图/日志中
 - 若误泄露，请立即在服务端吊销并重新生成
 
-## 常见问题
-- 复制按钮无效：在 http 或受限环境可能禁用 Clipboard API，已内置回退方案；请尝试使用 https 或常规浏览器
-- Toast 不居中：已使用 fixed + translateX(-50%)，如仍异常，请检查浏览器缩放/插件影响
-- 代理报 400：检查 tenant_url 是否以 / 结尾，或是否在白名单中
 
-## 许可证
+
+## 许可证 📄
 本项目基于 MIT 协议开源，详见 LICENSE 文件。
