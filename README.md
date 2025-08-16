@@ -8,7 +8,6 @@
 
 <p>
 <a href="https://github.com/Sube3494/Augment-Token-Extractor/actions/workflows/ci.yml"><img alt="CI" src="https://img.shields.io/github/actions/workflow/status/Sube3494/Augment-Token-Extractor/ci.yml?branch=main&label=CI&logo=github" /></a>
-<a href="https://github.com/Sube3494/Augment-Token-Extractor/actions/workflows/deploy.yml"><img alt="Deploy" src="https://img.shields.io/github/actions/workflow/status/Sube3494/Augment-Token-Extractor/deploy.yml?branch=main&label=Deploy&logo=github" /></a>
 <a href="LICENSE"><img alt="License" src="https://img.shields.io/github/license/Sube3494/Augment-Token-Extractor?label=license" /></a>
 <a href="https://conventionalcommits.org"><img alt="Conventional Commits" src="https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg" /></a>
 <img alt="PRs Welcome" src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" />
@@ -29,6 +28,7 @@
 
 ### 预览截图 📸
 ![主页浅色](docs/images/home-light.png)
+
 ![主页深色](docs/images/home-dark.png)
 
 ## 功能特性 ✨
@@ -190,27 +190,7 @@ pnpm lint    # 运行 ESLint（可选）
 
 > 本项目提供两种“令牌交换中转站”：Vercel 的 Next.js API（默认随网站部署），或 Cloudflare Worker（独立部署）。选择其一即可。
 
-### 通过 GitHub Actions 部署
 
-本仓库包含两个工作流：
-- .github/workflows/ci.yml：CI 构建与类型检查
-- .github/workflows/deploy.yml：推送到 main 时自动部署（可手动 workflow_dispatch）
-
-准备工作（GitHub 仓库 → Settings → Secrets and variables → Actions）：
-- Vercel（网站部署）
-  - VERCEL_TOKEN：你的 Vercel API Token（Account → Tokens）
-  - VERCEL_ORG_ID：Vercel 组织 ID（项目 Overview → Settings → General）
-  - VERCEL_PROJECT_ID：Vercel 项目 ID（同上位置）
-  - 提醒：deploy.yml 会在缺失这些 Secrets 时自动跳过 Vercel 部署
-  - 在 Vercel 项目环境变量中配置 ALLOWED_ORIGINS、TENANT_URL_WHITELIST（或在 Pull 阶段从 Vercel 同步）
-- Cloudflare（Worker 部署，可选）
-  - CLOUDFLARE_API_TOKEN：wrangler 部署所需 Token（需有 Workers 权限）
-  - CLOUDFLARE_ACCOUNT_ID：你的 Cloudflare 账号 ID
-  - 提醒：deploy.yml 会在缺失这些 Secrets 时自动跳过 Cloudflare 部署
-
-触发方式：
-- 直接推送到 main 分支
-- 或在 Actions 页面手动运行 Deploy 工作流
 
 
 
