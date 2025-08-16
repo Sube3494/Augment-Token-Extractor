@@ -1,0 +1,63 @@
+name: Deploy
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch: {}
+
+jobs:
+  vercel-deploy:
+    name: Deploy Web (Vercel)
+    runs-on: ubuntu-latest
+    if: ${{ secrets.VERCEL_TOKEN != '' && secrets.VERCEL_ORG_ID != '' && secrets.VERCEL_PROJECT_ID != '' }}
+    env:
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      # Use Vercel CLI to pull env, build, and deploy (recommended production flow)
+      - name: Vercel pull env
+        run: pnpm dlx vercel pull --yes --environment=production --token "$VERCEL_TOKEN"
+
+      - name: Vercel build
+        run: pnpm dlx vercel build --prod --token "$VERCEL_TOKEN"
+
+      - name: Vercel deploy (prebuilt)
+        run: pnpm dlx vercel deploy --prebuilt --prod --token "$VERCEL_TOKEN"
+
+  cf-worker-deploy:
+    name: Deploy Worker (Cloudflare)
+    runs-on: ubuntu-latest
+    if: ${{ secrets.CLOUDFLARE_API_TOKEN != '' && secrets.CLOUDFLARE_ACCOUNT_ID != '' }}
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Deploy with Wrangler
+        run: pnpm dlx wrangler deploy --config wrangler.toml
+

@@ -1,0 +1,31 @@
+flowchart TD
+  A[用户浏览器]
+  B[前端页面 Next.js]
+  SS[SessionStorage]
+  O[Augment 授权页面]
+  C{选择代理}
+  D[/api/token-proxy Next API/]
+  E[Cloudflare Worker /token-proxy]
+  F[(租户 token 接口)]
+
+  A -->|生成授权URL| B
+  B -->|保存 code_verifier 与 state| SS
+  B -->|打开授权页| O
+  O -->|返回 JSON: code、tenant_url、state| B
+  B -->|校验 state 并构造 payload| C
+  C -->|默认| D
+  C -->|可选| E
+  D --> F
+  E --> F
+  F -->|返回 access_token| D
+  D -->|透传| B
+  B -->|显示与复制| A
+
+  classDef front fill:#E3F2FD,stroke:#64B5F6,color:#0D47A1
+  classDef server fill:#E8F5E9,stroke:#81C784,color:#1B5E20
+  classDef external fill:#F3E5F5,stroke:#BA68C8,color:#4A148C
+
+  class B,SS front
+  class D,E server
+  class O,F external
+

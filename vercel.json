@@ -1,0 +1,18 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "version": 2,
+  "framework": "nextjs",
+  "buildCommand": "pnpm build",
+  "installCommand": "pnpm install --frozen-lockfile",
+  "outputDirectory": ".next",
+  "env": {
+    "ALLOWED_ORIGINS": "*",
+    "TENANT_URL_WHITELIST": ""
+  },
+  "functions": {
+    "src/app/api/token-proxy/route.ts": {
+      "maxDuration": 10
+    }
+  }
+}
+

@@ -1,0 +1,33 @@
+flowchart LR
+  subgraph Client
+    UI[Next.js App (App Router)]
+    Theme[Theme & ACE UI]
+    PKCE[PKCE Utils]
+    Storage[(SessionStorage)]
+    UI --> Theme
+    UI --> PKCE
+    UI --> Storage
+  end
+
+  subgraph Edge
+    NextAPI[/Next API: /api/token-proxy/]
+    CFWorker[Cloudflare Worker: /token-proxy]
+  end
+
+  subgraph Augment Cloud
+    Token[(Tenant /token API)]
+  end
+
+  UI -- fetch --> NextAPI
+  UI -- fetch (optional) --> CFWorker
+  NextAPI --> Token
+  CFWorker --> Token
+
+  classDef client fill:#E3F2FD,stroke:#64B5F6,color:#0D47A1
+  classDef edge fill:#E8F5E9,stroke:#81C784,color:#1B5E20
+  classDef cloud fill:#FFF3E0,stroke:#FFB74D,color:#E65100
+
+  class UI,Theme,PKCE,Storage client
+  class NextAPI,CFWorker edge
+  class Token cloud
+
