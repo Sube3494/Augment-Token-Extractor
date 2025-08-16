@@ -35,7 +35,7 @@ export default {
     }
 
     try {
-      const { tenant_url, payload } = await req.json<any>()
+      const { tenant_url, payload } = (await req.json()) as { tenant_url?: string; payload?: unknown }
       if (!tenant_url || typeof tenant_url !== 'string') return json({ error: 'tenant_url required' }, { status: 400 }, corsHeaders(origin, env))
       if (!payload || typeof payload !== 'object') return json({ error: 'payload required' }, { status: 400 }, corsHeaders(origin, env))
 
