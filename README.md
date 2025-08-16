@@ -135,17 +135,15 @@ pnpm lint    # 运行 ESLint（可选）
 
 ### 一键部署网站（Vercel）
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FYOUR_ORG%2FYOUR_REPO&project-name=augment-token-extractor&repository-name=augment-token-extractor&install-command=pnpm%20install%20--frozen-lockfile&build-command=pnpm%20build&env=ALLOWED_ORIGINS,TENANT_URL_WHITELIST&output-directory=.next)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FSube3494%2FAugment-Token-Extractor&project-name=augment-token-extractor&repository-name=Augment-Token-Extractor&install-command=pnpm%20install%20--frozen-lockfile&build-command=pnpm%20build&env=ALLOWED_ORIGINS,TENANT_URL_WHITELIST&output-directory=.next)
 
 - 部署完成后，在 Project → Settings → Environment Variables 设置：
   - ALLOWED_ORIGINS：你的前端域名（生产环境不要用 *）
   - TENANT_URL_WHITELIST：允许的租户前缀（逗号分隔，以 / 结尾）
 
-> 将链接中的 YOUR_ORG/YOUR_REPO 替换为当前仓库地址后再点击。
-
 ### 一键部署中转站（Cloudflare Worker，可选）
 
-[![Deploy to Cloudflare Workers](https://img.shields.io/badge/Deploy_to-Cloudflare_Workers-orange?logo=cloudflare)](https://deploy.workers.cloudflare.com/?url=https%3A%2F%2Fgithub.com%2FYOUR_ORG%2FYOUR_REPO)
+[![Deploy to Cloudflare Workers](https://img.shields.io/badge/Deploy_to-Cloudflare_Workers-orange?logo=cloudflare)](https://deploy.workers.cloudflare.com/?url=https%3A%2F%2Fgithub.com%2FSube3494%2FAugment-Token-Extractor)
 
 - 进入控制台后，按照提示创建 Worker；在 Variables 中设置：
   - ALLOWED_ORIGINS：允许的前端域名（多个用逗号）
