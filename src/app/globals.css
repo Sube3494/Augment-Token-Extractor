@@ -327,6 +327,21 @@
 }
 
 ::selection {
-  background: hsl(var(--primary) / 0.2);
-  color: hsl(var(--primary-foreground));
+  background: #3b82f6;
+  color: white;
+}
+
+::-moz-selection {
+  background: #3b82f6;
+  color: white;
+}
+
+.dark ::selection {
+  background: #93c5fd;
+  color: #1e293b;
+}
+
+.dark ::-moz-selection {
+  background: #93c5fd;
+  color: #1e293b;
 }

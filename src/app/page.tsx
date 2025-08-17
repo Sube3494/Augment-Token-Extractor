@@ -354,9 +354,9 @@ export default function Home() {
             )}
           </section>
 
-          <section className="bg-card rounded-3xl border border-border p-8 shadow-lg shadow-green-500/5 dark:shadow-green-500/10 hover:shadow-xl hover:shadow-green-500/10">
+          <section className="bg-card rounded-3xl border border-border p-8 shadow-lg shadow-primary/5 dark:shadow-primary/10 hover:shadow-xl hover:shadow-primary/10">
             <div className="flex items-center gap-4 mb-6">
-              <div className="flex items-center justify-center w-10 h-10 bg-green-600 text-white rounded-full font-semibold hover:scale-110 hover:rotate-12 cursor-default">
+              <div className="flex items-center justify-center w-10 h-10 bg-green-500 text-white rounded-full font-semibold hover:scale-110 hover:rotate-12 cursor-default">
                 2
               </div>
               <h2 className="text-2xl font-semibold text-foreground">输入授权数据</h2>
@@ -384,7 +384,7 @@ export default function Home() {
                 type="button"
                 onClick={exchangeToken}
                 disabled={isExchanging}
-                className="px-6 py-3 bg-green-600 hover:bg-green-700 disabled:bg-green-400 text-white font-medium rounded-xl shadow-sm transition-[background-color,box-shadow,transform] duration-300 ease-out disabled:cursor-not-allowed flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-green-500/25 hover:scale-[1.02]"
+                className="px-6 py-3 bg-green-500 hover:bg-green-600 disabled:bg-green-500/50 text-white font-medium rounded-xl shadow-sm transition-[background-color,box-shadow,transform] duration-300 ease-out disabled:cursor-not-allowed flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-green-500/25 hover:scale-[1.02]"
               >
                 {isExchanging ? (
                   <>
@@ -398,8 +398,8 @@ export default function Home() {
             </div>
 
             {accessToken && (
-              <div className="mt-8 p-6 bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-800 rounded-2xl">
-                <h3 className="text-lg font-semibold text-green-900 dark:text-green-100 mb-4 flex items-center gap-2">
+              <div className="mt-8 p-6 bg-card border border-border rounded-2xl shadow-lg shadow-primary/5 dark:shadow-primary/10">
+                <h3 className="text-lg font-semibold text-green-700 dark:text-green-400 mb-4 flex items-center gap-2">
                   <svg
                     className="w-5 h-5 hover:scale-110 transition-transform duration-200"
                     fill="none"
@@ -418,20 +418,18 @@ export default function Home() {
 
                 <div className="space-y-4">
                   <div>
-                    <label className="block text-sm font-medium text-green-800 dark:text-green-200 mb-2">
-                      访问令牌
-                    </label>
+                    <label className="block text-sm font-medium text-foreground mb-2">访问令牌</label>
                     <div className="flex flex-col sm:flex-row gap-3">
                       <input
                         aria-label="访问令牌"
-                        className="flex-1 px-4 py-3 border border-green-300 dark:border-green-700 rounded-xl bg-white dark:bg-green-950/50 font-mono text-sm text-green-900 dark:text-green-100"
+                        className="flex-1 px-4 py-3 border border-input rounded-xl bg-background font-mono text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent transition-all"
                         value={accessToken}
                         readOnly
                       />
                       <button
                         type="button"
                         onClick={() => copy(accessToken, "访问令牌")}
-                        className="px-4 py-3 bg-green-600 hover:bg-green-700 text-white rounded-xl transition-[background-color,box-shadow,transform] duration-300 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring flex items-center gap-2 hover:shadow-lg hover:shadow-green-500/25 hover:scale-[1.02]"
+                        className="px-4 py-3 bg-green-500 hover:bg-green-600 text-white rounded-xl transition-[background-color,box-shadow,transform] duration-300 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-500 flex items-center gap-2 hover:shadow-lg hover:shadow-green-500/25 hover:scale-[1.02]"
                       >
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path
@@ -447,18 +445,18 @@ export default function Home() {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-green-800 dark:text-green-200 mb-2">租户URL</label>
+                    <label className="block text-sm font-medium text-foreground mb-2">租户URL</label>
                     <div className="flex flex-col sm:flex-row gap-3">
                       <input
                         aria-label="租户URL"
-                        className="flex-1 px-4 py-3 border border-green-300 dark:border-green-700 rounded-xl bg-white dark:bg-green-950/50 font-mono text-sm text-green-900 dark:text-green-100"
+                        className="flex-1 px-4 py-3 border border-input rounded-xl bg-background font-mono text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent transition-all"
                         value={tenantUrl}
                         readOnly
                       />
                       <button
                         type="button"
                         onClick={() => copy(tenantUrl, "租户URL")}
-                        className="px-4 py-3 bg-green-600 hover:bg-green-700 text-white rounded-xl transition-[background-color,box-shadow,transform] duration-300 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-green-500/60 flex items-center gap-2 hover:shadow-lg hover:shadow-green-500/25 hover:scale-[1.02]"
+                        className="px-4 py-3 bg-green-500 hover:bg-green-600 text-white rounded-xl transition-[background-color,box-shadow,transform] duration-300 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-500 flex items-center gap-2 hover:shadow-lg hover:shadow-green-500/25 hover:scale-[1.02]"
                       >
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path
