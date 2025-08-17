@@ -4,7 +4,7 @@ import * as React from "react"
 import { useTheme } from "next-themes"
 
 export function ThemeToggle() {
-  const { theme, setTheme } = useTheme()
+  const { resolvedTheme, setTheme } = useTheme()
   const [mounted, setMounted] = React.useState(false)
 
   React.useEffect(() => {
@@ -17,7 +17,7 @@ export function ThemeToggle() {
 
   return (
     <button
-      onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+      onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
       className="group relative w-10 h-10 rounded-xl bg-background border border-border hover:bg-accent transition-all duration-200 ace-press ace-ripple focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
       aria-label="切换主题"
     >
@@ -25,7 +25,7 @@ export function ThemeToggle() {
         {/* Sun icon */}
         <svg
           className={`w-5 h-5 text-foreground transition-all duration-200 ${
-            theme === "dark" ? "rotate-90 scale-0" : "rotate-0 scale-100"
+            resolvedTheme === "dark" ? "rotate-90 scale-0" : "rotate-0 scale-100"
           }`}
           fill="none"
           stroke="currentColor"
@@ -38,7 +38,7 @@ export function ThemeToggle() {
         {/* Moon icon */}
         <svg
           className={`absolute w-5 h-5 text-foreground transition-all duration-200 ${
-            theme === "dark" ? "rotate-0 scale-100" : "-rotate-90 scale-0"
+            resolvedTheme === "dark" ? "rotate-0 scale-100" : "-rotate-90 scale-0"
           }`}
           fill="none"
           stroke="currentColor"
